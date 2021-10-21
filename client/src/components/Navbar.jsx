@@ -50,7 +50,7 @@ const Navig = (props) => {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
+          <NavbarText>DogsRUs</NavbarText>
         </Collapse>
       </Navbar>
     </div>
