@@ -9,11 +9,11 @@ class Breeds extends Component {
         <h1 className="display-1 text-center">Puppies</h1>
           <div className="row">
             {this.props.breeds.map(data => (
-            <div className=" breed col-4 text-center" key={data.breed}>
-              <img src={data.src} alt={data.breed} />
-              <h3 className='mt-3'>
-              <Link className='underline' to={`/breeds/${data.breed}`}>
-                  {data.breed}
+            <div className=" breed col-4 text-center" key={data.name}>
+              <img src={data.src} alt={data.name} />
+              <h3 className='mt-1'>
+              <Link className='underline' to={`/breeds/${data.name}`}>
+                  {data.name}
                 </Link>
               </h3>
               </div>

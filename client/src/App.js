@@ -18,50 +18,50 @@ class App extends Component {
   static defaultProps = {
     breeds: [
       {
-        breed: "Belgian Tervuren",
+        name: "Belgian Tervuren",
         Size: "Medium",
         src: belgianterv,
-        characteristics: [
+        description: [
           "The Belgian Tervuren, also referred to as a Terv, is an intelligent breed originating from (unsurprisingly) the Belgian town of Tervuren, where the dogs are known as Chien de Berger Belge. This medium sized herding breed is known for its love of hard work, as well as for its brilliant Shepherd coat."
         ]
       },
       {
-        breed: "Akita",
+        name: "Akita",
         Size: "Large",
         src: akita,
-        characteristics: [
+        description: [
           "The Akita is a large breed of dog originating from the mountainous regions of northern Japan. There are two separate varieties of Akita: a Japanese strain, commonly called Akita Inu or Japanese Akita, and an American strain, known as the Akita or American Akita."
         ]
       },
       {
-        breed: "Australian Shepherd",
+        name: "Australian Shepherd",
         Size: "Medium",
         src: aussie,
-        characteristics: [
+        description: [
           "The Australian Shepherd is a breed of herding dog from the United States. Developed in California in the 19th century, it is claimed the breed descends from a variety of herding breeds including collies imported into California alongside sheep imported from Australia and New Zealand, the breed taking its name from the former. Originally used solely as a herding dog, the Australian Shepherd has become one of the most popular companion dog breeds in North America."
         ]
       },
       {
-        breed: "Siberian Husky",
+        name: "Siberian Husky",
         Size: "Medium",
         src: husky,
-        characteristics: [
+        description: [
           "The Siberian Husky is a medium-sized working sled dog breed. The breed belongs to the Spitz genetic family. It is recognizable by its thickly furred double coat, erect triangular ears, and distinctive markings, and is smaller than the similar-looking Alaskan Malamute."
         ]
       },
       {
-        breed: "Weimaraner",
+        name: "Weimaraner",
         Size: "Large",
         src: weimaraner,
-        characteristics: [
+        description: [
           "The Weimaraner is a large dog that was originally bred as a hunting dog in the early 19th century. Early Weimaraners were used by royalty for hunting large game such as boar, bear and deer."
         ]
       },
       {
-        breed: "Border Collie",
+        name: "Border Collie",
         Size: "Medium",
         src: bordercollie,
-        characteristics: [
+        description: [
           "The Border Collie is a working and herding dog breed. They come from the Anglo-Scottish border region and are used to herd livestock, specifically sheep. The Border Collie is considered a highly intelligent, extremely energetic, acrobatic and athletic dog."
         ]
       }
@@ -69,17 +69,20 @@ class App extends Component {
   }
   render() {
     const findBreed = props => {
-      let breed = props.match.params.breed
+      let name = props.match.params.name
       let onebreed = this.props.breeds.find(
-        breed => breed.breed.toLowerCase() === breed.toLowerCase()
+        breed => breed.name.toLowerCase() === name.toLowerCase()
       )
       return <BreedPage {...props} breed={onebreed} />
     }
     return (
+      <>
+      <Navig breeds={this.props.breeds} />
       <Switch>
         <Route exact path ='/breeds' render={() => <Breeds breeds={this.props.breeds} />} />
-        <Route exact path ='/breeds:breed' render={findBreed} />
+        <Route exact path ='/breeds/:name' render={findBreed} />
       </Switch>
+      </>
     )
   }
 }
