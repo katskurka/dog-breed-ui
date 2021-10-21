@@ -1,8 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { Component } from "react"
-import Routes from "./Routes"
-import Navbar from "./Navbar"
+
+import Navig from "./components/Navbar"
+import belgianterv from "./images/belgianterv.jpg"
+import akita from "./images/akita.jpg"
+import aussie from "./images/aussie.jpg"
+import husky from "./images/husky.jpg"
+import weimaraner from "./images/weimaraner.jpg"
+import bordercollie from "./images/bordercollie.jpg"
+import { Route, Switch } from 'react-router-dom'
+import Breeds from './components/Breeds/Breeds'
+import BreedPage from './components/BreedPage/BreedPage'
 
 
 class App extends Component {
@@ -58,11 +67,21 @@ class App extends Component {
       }
     ]
   }
-  return (
-    <div className="App">
-     <h1 className="display-1">Dog Breeds</h1>
-    </div>
-  );
+  render() {
+    const findBreed = props => {
+      let breed = props.match.params.breed
+      let onebreed = this.props.breeds.find(
+        breed => breed.breed.toLowerCase() === breed.toLowerCase()
+      )
+      return <BreedPage {...props} breed={onebreed} />
+    }
+    return (
+      <Switch>
+        <Route exact path ='/breeds' render={() => <Breeds breeds={this.props.breeds} />} />
+        <Route exact path ='/breeds:breed' render={findBreed} />
+      </Switch>
+    )
+  }
 }
 
 export default App;
