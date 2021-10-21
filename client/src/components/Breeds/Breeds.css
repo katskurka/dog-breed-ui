@@ -1,0 +1,6 @@
+.breed img {
+  width: 60%;
+}
+.breed:hover {
+  filter: contrast(50%);
+}
